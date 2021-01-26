@@ -4,10 +4,10 @@
 
 ## 環境建置與需求
 
-Node.js v14.15.3
-Express v4.17.1
-Express-handlebars v5.2.0
-Nodemon 2.0.7
+- Node.js v14.15.3
+- Express v4.17.1
+- Express-handlebars v5.2.0
+- Nodemon 2.0.7
 
 ### Installing - 專案安裝流程
 
