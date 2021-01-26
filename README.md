@@ -46,6 +46,6 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Features - 功能描述
 
-使用者可以瀏覽所有的餐廳
-使用者可以透過關鍵字搜尋餐廳
-使用者可以點擊任一家餐廳，查看更多餐廳資訊
+- 使用者可以瀏覽所有的餐廳
+- 使用者可以透過關鍵字搜尋餐廳
+- 使用者可以點擊任一家餐廳，查看更多餐廳資訊
