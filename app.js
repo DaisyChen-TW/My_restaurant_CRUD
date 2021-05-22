@@ -8,20 +8,20 @@ const Restaurant = require('./models/restaurant')
 const exphbs = require('express-handlebars')
 //const restaurantList = require('./restaurant.json')
 
-mongoose.connect('mongodb://localhost/my-restaurant',{useNewUrlParser: true ,useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost/my-restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
-db.on('error', () =>{
-    console.log('mongodb error!')
+db.on('error', () => {
+  console.log('mongodb error!')
 })
 
 db.once('open', () => {
-    console.log('mongodb connected!')
+  console.log('mongodb connected!')
 })
 
 // routes setting
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 app.set('view engine', 'handlebars')
 
@@ -31,26 +31,33 @@ app.use(express.static('public'))
 //    res.render('index', { restaurants: restaurantList.results })
 // })
 
-app.get('/',(req,res) =>{
+
 //拿到所有todo的資料
-    Restaurant.find()
-      .lean()
-      .then(restaurants => res.render('index', { restaurants }))
-      .catch(error => console.log(error))
+app.get('/', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
+//瀏覽一筆資料
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('detail', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+
+//待debug
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  // const restaurants = Restaurant.results.filter(Restaurant => {
-  //   return Restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  // })
-  console.log('req',req)
-  res.render('index', { Restaurant: Restaurant, keyword: keyword })
-})
-
-app.get('/restaurants/:restaurant_id', (req, res) => {
-   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
+  const restaurants = Restaurant.results.filter(restaurant => {
+    return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+  })
+  console.log('req', req)
+  res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 
