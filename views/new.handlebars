@@ -1,0 +1,42 @@
+<div class="container">
+  <br>
+  <p>New restaurant</p>
+
+  <form action="/restaurants" method="POST">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">餐廳名稱：</label>
+      <input type="text" class="form-control form-control-sm" placeholder="restaurant" name="name">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleDataList" class="form-label">餐廳類型：</label>
+      <input class="form-control form-control-sm" list="datalistOptions" placeholder="category" name="category">
+      <datalist id="datalistOptions">
+        <option value="美式">
+        <option value="義式">
+        <option value="咖啡">
+        <option value="中東料理">
+        <option value="酒吧">
+      </datalist>
+    </div>
+
+    <div class="mb-3">
+      <label for="name">地點：</label>
+      <input type="text" class="form-control form-control-sm" placeholder="location" name="location">
+    </div>
+
+    <div class="mb-3">
+      <label for="name">電話：</label>
+      <input type="text" class="form-control form-control-sm" placeholder="phone" name="phone">
+    </div>
+
+
+    <div class="mb-3">
+      <label for="name">餐廳評分：</label>
+      <input type="text" class="form-control form-control-sm" placeholder="rating" name="rating">
+    </div>
+
+    <button type="submit">submit</button>
+  </form>
+</div>
