@@ -3,12 +3,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
+const Restaurant = require('./models/restaurant')
 
-// require express-handlebars here
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+//const restaurantList = require('./restaurant.json')
 
-mongoose.connect('mongodb://localhost/My_restaurant',{useNewUrlParser: true ,useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost/my-restaurant',{useNewUrlParser: true ,useUnifiedTopology: true})
 
 const db = mongoose.connection
 
@@ -27,16 +27,25 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-   res.render('index', { restaurants: restaurantList.results })
+// app.get('/', (req, res) => {
+//    res.render('index', { restaurants: restaurantList.results })
+// })
+
+app.get('/',(req,res) =>{
+//拿到所有todo的資料
+    Restaurant.find()
+      .lean()
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.log(error))
 })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  // const restaurants = Restaurant.results.filter(Restaurant => {
+  //   return Restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+  // })
+  console.log('req',req)
+  res.render('index', { Restaurant: Restaurant, keyword: keyword })
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {

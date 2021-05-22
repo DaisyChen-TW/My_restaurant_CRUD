@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "seed": "node models/seeds/restaurantSeeder.js",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

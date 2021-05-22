@@ -1,7 +1,7 @@
 <!-- ./views/index.handlebars -->
 <div class="container mt-5">
 
-    {{#each restaurantList}}
+    {{#each Restaurant}}
     {{this}}
     {{/each}}
     <!-- search bar -->
@@ -43,7 +43,7 @@
                                     {{this.rating}}
                                     <i class="fas fa-star fa-xs"></i>
                                 </span>
-                                <div class="p-5">
+                                <div class="pl-2">
                                     <a href="">Edit</a>
                                     <a href="">Detail</a>
                                     <form action="" method="POST" style="display: inline;">
