@@ -66,6 +66,16 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//delete一筆資料
+app.post('/restaurants/:id/delete',(req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+
 
 //待debug
 app.get('/search', (req, res) => {
