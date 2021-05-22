@@ -50,6 +50,8 @@ app.get('/restaurants/new',(req, res) =>{
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const category = req.body.category
+  const location = req.body.location
+  const phone = req.body.phone
   const rating = req.body.rating 
 
   return Restaurant.create({ name, category, rating})
@@ -75,7 +77,37 @@ app.post('/restaurants/:id/delete',(req, res) => {
     .catch(error => console.log(error))
 })
 
+//進入編輯一筆資料
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
 
+//編輯一筆資料
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const category = req.body.category
+  const location = req.body.location
+  const phone = req.body.phone
+  const rating = req.body.rating
+
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      restaurant.category = category
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.rating = rating
+      return restaurant.save()
+    })
+
+    .then(restaurant => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 
 //待debug
 app.get('/search', (req, res) => {
