@@ -50,11 +50,13 @@ app.get('/restaurants/new',(req, res) =>{
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const category = req.body.category
+  const image = req.body.image
   const location = req.body.location
   const phone = req.body.phone
   const rating = req.body.rating 
+  const description = req.body.description
 
-  return Restaurant.create({ name, category, rating})
+  return Restaurant.create({ name, category, rating, location, phone, image, description})
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -91,17 +93,21 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const category = req.body.category
+  const image = req.body.image
   const location = req.body.location
   const phone = req.body.phone
   const rating = req.body.rating
+  const description = req.body.description
 
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
       restaurant.category = category
+      restaurant.image = image
       restaurant.location = location
       restaurant.phone = phone
       restaurant.rating = rating
+      restaurant.description = description
       return restaurant.save()
     })
 

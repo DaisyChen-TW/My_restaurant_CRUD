@@ -1,7 +1,5 @@
-
-
 <div class="container">
-<br>
+  <br>
   <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
 
     <div class="mb-3">
@@ -11,7 +9,8 @@
 
     <div class="mb-3">
       <label for="exampleDataList" class="form-label">餐廳類型：</label>
-      <input class="form-control form-control-sm" list="datalistOptions" placeholder="category" name="category" value="{{restaurant.category}}">
+      <input class="form-control form-control-sm" list="datalistOptions" placeholder="category" name="category"
+        value="{{restaurant.category}}">
       <datalist id="datalistOptions">
         <option value="美式">
         <option value="義式">
@@ -22,21 +21,35 @@
     </div>
 
     <div class="mb-3">
+      <label for="name">圖片：</label>
+      <input type="text" class="form-control form-control-sm" placeholder="URL" name="image"
+        value="{{restaurant.image}}">
+    </div>
+
+    <div class="mb-3">
       <label for="name">地點：</label>
-      <input type="text" class="form-control form-control-sm" placeholder="location" name="location" value="{{restaurant.location}}">
+      <input type="text" class="form-control form-control-sm" placeholder="location" name="location"
+        value="{{restaurant.location}}">
     </div>
 
     <div class="mb-3">
       <label for="name">電話：</label>
-      <input type="text" class="form-control form-control-sm" placeholder="phone" name="phone" value="{{restaurant.phone}}">
+      <input type="text" class="form-control form-control-sm" placeholder="phone" name="phone"
+        value="{{restaurant.phone}}">
     </div>
 
 
     <div class="mb-3">
       <label for="name">餐廳評分：</label>
-      <input type="text" class="form-control form-control-sm" placeholder="rating" name="rating" value="{{restaurant.rating}}">
+      <input type="text" class="form-control form-control-sm" placeholder="rating" name="rating"
+        value="{{restaurant.rating}}">
     </div>
 
+    <div class="mb-3">
+      <label for="name">更多介紹：</label>
+      <input class="form-control" placeholder="Leave a comment here" name="description" value="{{restaurant.description}}"></input>
+    </div>
+  
     <button type="submit" class="btn btn-primary">save</button>
   </form>
 
